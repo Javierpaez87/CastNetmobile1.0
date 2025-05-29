@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CastNet – Fly Fishing Patagonia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="hero">
+    <header class="navbar">
+      <img src="assets/hook-icon.png" alt="CastNet Logo" class="logo" />
+      <div class="user-profile">
+        <a href="#" id="user-icon" class="user-button hidden"></a>
+        <div class="profile-dropdown" id="profile-dropdown">
+          <a href="#profile">Mi Perfil</a>
+          <a href="#settings">Ajustes de Perfil</a>
+          <a href="#" id="btn-publish-trip">Publica Salida de Pesca</a>
+          <a href="#search">Buscar Salida de Pesca</a>
+          <a href="#" id="logout">Cerrar Sesión</a>
+        </div>
+      </div>
+      <nav>
+        <a href="#">Trips</a>
+        <a href="#">Lodges</a>
+        <a href="#">Guides</a>
+        <a href="#">Equipamiento</a>
+        <a href="#" id="btn-open-login">Log&nbsp;in</a>
+        <a href="#" id="btn-open-register">Register</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      <h1 class="title">CastNet</h1>
+      <p class="subtitle small">Conectá con pescadores y guías, compartí flotadas y conocé nuevos ríos y lagos.</p>
+      <p class="subtitle small">Casteá en red.</p>
+
+      <form class="search-form" action="#" method="get">
+        <div class="form-row">
+          <div class="form-field"><input type="text" placeholder="Ubicación" required></div>
+          <div class="form-field"><input type="date" required></div>
+          <div class="form-field"><input type="date" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><input type="time" required></div>
+          <div class="form-field"><input type="time" required></div>
+        </div>
+        <div class="form-row">
+          <button type="submit" class="cta-button">Buscar</button>
+        </div>
+      </form>
+
+      <h2 class="section-heading">Opciones recomendadas para ti</h2>
+      <section class="cards recommended-cards">
+        <div class="card">
+          <div class="card-icon">
+            <img src="assets/lancha.png" alt="Lancha Icon" style="width: 28px; height: 28px;" />
+          </div>
+          <div class="info">
+            <h3>Mar 12 – 14</h3>
+            <p>Paimún, Lancha Compartida (3 lugares)</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <img src="assets/mackenzie.png" alt="Mackenzie Boat Icon" style="width: 28px; height: 28px;" />
+          </div>
+          <div class="info">
+            <h3>Apr 5 – 6</h3>
+            <p>Catarraft + Balsa: Chimehuin arriba (2 lugares)</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <img src="assets/vadeo.png" alt="Vadeo Icon" style="width: 28px; height: 28px;" />
+          </div>
+          <div class="info">
+            <h3>May 19 – 22</h3>
+            <p>Collón Cura, vadeo</p>
+          </div>
+        </div>
+      </section>
+
+      <h2 class="section-heading">Salidas Publicadas</h2>
+      <section class="cards user-trips-cards"></section>
+
+      <h2 class="section-heading">Testimonios</h2>
+      <section class="testimonials">
+        <div class="testimonial">
+          <img src="assets/Luca.png" alt="Luca">
+          <blockquote>"Con CastNet me sumé a una flotada en Catarraft por el Chimehuin arriba (saliendo de Huechulafquen) con locales de Junín de los Andes. Mejor experiencia imposible."</blockquote>
+          <p class="author">Luca, Torino</p>
+        </div>
+
+        <div class="testimonial">
+          <img src="assets/Clemence.png" alt="Clémence">
+          <blockquote>"Lo mejor de CastNet es la conexión humana. Enfermos de la pesca ahora nos econtramos mas rapido"</blockquote>
+          <p class="author">Clémence, Francia</p>
+        </div>
+
+        <div class="testimonial">
+          <img src="assets/Tom.png" alt="Tom">
+          <blockquote>"Reservé una flotada en el río Malleo con un guía, y a ultimo momento mis amigos no pudieron venir. Por suerte con CastNet consegui dos tremendos pescadores (ahora amigos) que mejoraron por mucho la experiencia."</blockquote>
+          <p class="author">Tom, EE.UU.</p>
+        </div>
+      </section>
+
+      <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-btn" id="close-modal">&times;</span>
+          <h2 id="modal-title">Autenticación</h2>
+          <form id="auth-form">
+            <input type="text" id="first-name" placeholder="Nombre" class="hidden" />
+            <input type="text" id="last-name" placeholder="Apellido" class="hidden" />
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <input type="password" id="confirm-password" placeholder="Confirmar Contraseña" class="hidden" />
+            <button type="submit" id="btn-auth-action">Ingresar</button>
+          </form>
+          <div id="social-logins" class="social-buttons">
+            <button id="btn-google" class="social-button">
+              <img src="assets/google-logo.png" alt="Google logo" />
+              Continuar con Google
+            </button>
+            <button id="btn-facebook" class="social-button">
+              <img src="assets/facebook-logo.png" alt="Facebook logo" />
+              Continuar con Facebook
+            </button>
+          </div>
+          <p id="auth-message"></p>
+        </div>
+      </div>
+
+      <div id="publish-trip-modal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-btn" id="close-publish-modal">&times;</span>
+          <h2>Publicar Salida de Pesca</h2>
+          <form id="publish-trip-form">
+            <input type="text" id="trip-location" placeholder="Ubicación" required />
+            <input type="date" id="trip-start-date" placeholder="Día de comienzo" required />
+            <input type="date" id="trip-end-date" placeholder="Día de finalización" required />
+            <input type="time" id="trip-start-time" placeholder="Horario de salida" required />
+            <input type="time" id="trip-end-time" placeholder="Horario de finalización" required />
+            
+            <div class="form-group">
+              <label>Actividad:</label>
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="activity" value="vadeo" required> Vadeo
+                </label>
+                <label>
+                  <input type="radio" name="activity" value="deriva"> Deriva: Bote/Balsa/Catarraft
+                </label>
+                <label>
+                  <input type="radio" name="activity" value="lancha"> Lancha
+                </label>
+                <label>
+                  <input type="radio" name="activity" value="otro"> Otro
+                </label>
+              </div>
+              <input type="text" id="activity-other" placeholder="Especificar otra actividad" class="hidden" />
+            </div>
+
+            <div class="form-group">
+              <label for="available-spots">Lugares disponibles:</label>
+              <input type="number" id="available-spots" min="1" value="1" required />
+            </div>
+            
+            <button type="submit" class="cta-button">Publicar Salida</button>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    © 2025 CastNet. Hecho en Patagonia. Todos los derechos reservados.
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script type="module">
+    import { supabase } from './src/supabaseClient.js';
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-jb3mybgixNPt4DbjveAamPLXPjfdUnw",
+      authDomain: "castnet-8a81c.firebaseapp.com",
+      projectId: "castnet-8a81c",
+      storageBucket: "castnet-8a81c.firebasestorage.app",
+      messagingSenderId: "685260060310",
+      appId: "1:685260060310:web:e82e1193ec898d489474b7"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const providerGoogle = new firebase.auth.GoogleAuthProvider();
+    const providerFacebook = new firebase.auth.FacebookAuthProvider();
+
+    const modal = document.getElementById('auth-modal');
+    const publishTripModal = document.getElementById('publish-trip-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const btnAuthAction = document.getElementById('btn-auth-action');
+    const closeModalBtn = document.getElementById('close-modal');
+    const closePublishModalBtn = document.getElementById('close-publish-modal');
+    const authForm = document.getElementById('auth-form');
+    const publishTripForm = document.getElementById('publish-trip-form');
+    const authMessage = document.getElementById('auth-message');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    const firstNameInput = document.getElementById('first-name');
+    const lastNameInput = document.getElementById('last-name');
+    const socialLogins = document.getElementById('social-logins');
+    const loginBtn = document.getElementById('btn-open-login');
+    const registerBtn = document.getElementById('btn-open-register');
+    const userIcon = document.getElementById('user-icon');
+    const profileDropdown = document.getElementById('profile-dropdown');
+    const logoutBtn = document.getElementById('logout');
+    const btnPublishTrip = document.getElementById('btn-publish-trip');
+    const activityOtherInput = document.getElementById('activity-other');
+
+    let isLogin = true;
+
+    btnPublishTrip.addEventListener('click', (e) => {
+      e.preventDefault();
+      profileDropdown.classList.remove('active');
+      publishTripModal.classList.remove('hidden');
+    });
+
+    closePublishModalBtn.addEventListener('click', () => {
+      publishTripModal.classList.add('hidden');
+      publishTripForm.reset();
+    });
+
+    document.querySelectorAll('input[name="activity"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'otro') {
+          activityOtherInput.classList.remove('hidden');
+          activityOtherInput.required = true;
+        } else {
+          activityOtherInput.classList.add('hidden');
+          activityOtherInput.required = false;
+        }
+      });
+    });
+
+    publishTripForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      try {
+        const formData = {
+          location: document.getElementById('trip-location').value,
+          start_date: document.getElementById('trip-start-date').value,
+          end_date: document.getElementById('trip-end-date').value,
+          start_time: document.getElementById('trip-start-time').value,
+          end_time: document.getElementById('trip-end-time').value,
+          activity_type: document.querySelector('input[name="activity"]:checked').value,
+          activity_other: document.getElementById('activity-other').value,
+          available_spots: parseInt(document.getElementById('available-spots').value),
+          user_id: auth.currentUser.uid
+        };
+
+        const { data, error } = await supabase
+          .from('fishing_trips')
+          .insert([formData]);
+
+        if (error) throw error;
+
+        alert('Salida de pesca publicada exitosamente!');
+        publishTripModal.classList.add('hidden');
+        publishTripForm.reset();
+        
+        loadFishingTrips();
+      } catch (error) {
+        alert('Error al publicar la salida: ' + error.message);
+      }
+    });
+
+    async function loadFishingTrips() {
+      try {
+        const { data: trips, error } = await supabase
+          .from('fishing_trips')
+          .select('*')
+          .order('start_date', { ascending: true });
+
+        if (error) throw error;
+
+        const userTripsContainer = document.querySelector('.user-trips-cards');
+        userTripsContainer.innerHTML = trips.map(trip => `
+          <div class="card">
+            <div class="card-icon">
+              <img src="assets/${trip.activity_type === 'vadeo' ? 'vadeo.png' : 
+                              trip.activity_type === 'deriva' ? 'mackenzie.png' : 
+                              trip.activity_type === 'lancha' ? 'lancha.png' : 'vadeo.png'}" 
+                   alt="${trip.activity_type}" style="width: 28px; height: 28px;" />
+            </div>
+            <div class="info">
+              <h3>${new Date(trip.start_date).toLocaleDateString()} – ${new Date(trip.end_date).toLocaleDateString()}</h3>
+              <p>${trip.location}, ${trip.activity_type === 'otro' ? trip.activity_other : trip.activity_type} 
+                 (${trip.available_spots} lugares)</p>
+            </div>
+          </div>
+        `).join('');
+      } catch (error) {
+        console.error('Error loading trips:', error);
+      }
+    }
+
+    loadFishingTrips();
+
+    userIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      profileDropdown.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!profileDropdown.contains(e.target) && !userIcon.contains(e.target)) {
+        profileDropdown.classList.remove('active');
+      }
+    });
+
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      auth.signOut();
+      profileDropdown.classList.remove('active');
+    });
+
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      isLogin = true;
+      modalTitle.textContent = 'Ingresar';
+      btnAuthAction.textContent = 'Ingresar';
+      socialLogins.style.display = 'flex';
+      firstNameInput.classList.add('hidden');
+      lastNameInput.classList.add('hidden');
+      confirmPasswordInput.classList.add('hidden');
+      modal.classList.remove('hidden');
+    });
+
+    registerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      isLogin = false;
+      modalTitle.textContent = 'Registrarse';
+      btnAuthAction.textContent = 'Registrarse';
+      socialLogins.style.display = 'none';
+      firstNameInput.classList.remove('hidden');
+      lastNameInput.classList.remove('hidden');
+      confirmPasswordInput.classList.remove('hidden');
+      modal.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      authForm.reset();
+      authMessage.textContent = '';
+    });
+
+    authForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value;
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+      authMessage.textContent = '';
+
+      try {
+        if (isLogin) {
+          await auth.signInWithEmailAndPassword(email, password);
+          authMessage.style.color = 'green';
+          authMessage.textContent = 'Ingreso exitoso. ¡Bienvenido!';
+        } else {
+          if (password !== confirmPassword) {
+            throw new Error("Las contraseñas no coinciden.");
+          }
+          await auth.createUserWithEmailAndPassword(email, password);
+          authMessage.style.color = 'green';
+          authMessage.textContent = 'Usuario registrado exitosamente.';
+        }
+      } catch (error) {
+        authMessage.style.color = 'red';
+        authMessage.textContent = 'Error: ' + error.message;
+      }
+    });
+
+    document.getElementById('btn-google').addEventListener('click', async () => {
+      try {
+        await auth.signInWithPopup(providerGoogle);
+        authMessage.style.color = 'green';
+        authMessage.textContent = 'Ingreso exitoso con Google.';
+        modal.classList.add('hidden');
+      } catch (error) {
+        authMessage.style.color = 'red';
+        authMessage.textContent = 'Error: ' + error.message;
+      }
+    });
+
+    document.getElementById('btn-facebook').addEventListener('click', async () => {
+      try {
+        await auth.signInWithPopup(providerFacebook);
+        authMessage.style.color = 'green';
+        authMessage.textContent = 'Ingreso exitoso con Facebook.';
+        modal.classList.add('hidden');
+      } catch (error) {
+        authMessage.style.color = 'red';
+        authMessage.textContent = 'Error: ' + error.message;
+      }
+    });
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('Usuario logueado:', user.email);
+        modal.classList.add('hidden');
+        authForm.reset();
+
+        const displayName = user.displayName || user.email;
+        const initials = displayName
+          .split(' ')
+          .map(word => word[0])
+          .join('')
+          .slice(0, 2)
+          .toUpperCase();
+
+        userIcon.textContent = initials;
+        userIcon.classList.remove('hidden');
+        loginBtn.classList.add('hidden');
+        registerBtn.classList.add('hidden');
+      } else {
+        userIcon.classList.add('hidden');
+        loginBtn.classList.remove('hidden');
+        registerBtn.classList.remove('hidden');
+        profileDropdown.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
